@@ -6,6 +6,7 @@ location="westus"
 osType="Ubuntu2204"
 vmssName="udacity-vmss"
 adminName="udacityadmin"
+adminPassword="Udacity123456789"
 storageAccount="udacitydiag$RANDOM"
 bePoolName="$vmssName-bepool"
 lbName="$vmssName-lb"
@@ -68,6 +69,7 @@ az vmss create \
   --custom-data cloud-init.txt \
   --upgrade-policy-mode automatic \
   --admin-username $adminName \
+  --admin-password $adminPassword
   --generate-ssh-keys \
   --verbose 
 
