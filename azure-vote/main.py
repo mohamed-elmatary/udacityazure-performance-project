@@ -148,4 +148,4 @@ if __name__ == "__main__":
     # TODO: Use the statement below when running locally
     # app.run() 
     # TODO: Use the statement below before deployment to VMSS
-    app.run(host='0.0.0.0', threaded=True, debug=True) # remote
+    app.run(host='127.0.0.1', threaded=True, debug=True, port=80) # remote
