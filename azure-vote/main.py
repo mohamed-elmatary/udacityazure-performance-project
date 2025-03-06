@@ -32,24 +32,24 @@ config_integration.trace_integrations(['logging'])
 config_integration.trace_integrations(['requests'])
 logger = logging.getLogger(__name__)
 
-handler = AzureLogHandler(connection_string='InstrumentationKey=acf11d7c-16d1-47c4-aea8-08805e6d9922;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=bd7f877c-1d38-4f0c-80ca-53356f31ea00')
+handler = AzureLogHandler(connection_string='InstrumentationKey=acf11d7c-16d1-47c4')
 handler.setFormatter(logging.Formatter('%(traceId)s %(spanId)s %(message)s'))
 logger.addHandler(handler)
 
-logger.addHandler(AzureEventHandler(connection_string='InstrumentationKey=acf11d7c-16d1-47c4-aea8-08805e6d9922;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=bd7f877c-1d38-4f0c-80ca-53356f31ea00'))
+logger.addHandler(AzureEventHandler(connection_string='InstrumentationKey=acf11d7c-16d1-47c4'))
 logger.setLevel(logging.INFO)
 
 # Metrics
 exporter = metrics_exporter.new_metrics_exporter(
   enable_standard_metrics=True,
-  connection_string='InstrumentationKey=acf11d7c-16d1-47c4-aea8-08805e6d9922;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=bd7f877c-1d38-4f0c-80ca-53356f31ea00')
+  connection_string='InstrumentationKey=acf11d7c-16d1-47c4')
 
 view_manager.register_exporter(exporter)
 
 # Tracing
 tracer = Tracer(
     exporter=AzureExporter(
-        connection_string='InstrumentationKey=acf11d7c-16d1-47c4-aea8-08805e6d9922;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=bd7f877c-1d38-4f0c-80ca-53356f31ea00'),
+        connection_string='InstrumentationKey=acf11d7c-16d1-47c4'),
     sampler=ProbabilitySampler(1.0),
 )
 app = Flask(__name__)
@@ -57,7 +57,7 @@ app = Flask(__name__)
 # Requests
 middleware = FlaskMiddleware(
     app,
-    exporter=AzureExporter(connection_string='InstrumentationKey=acf11d7c-16d1-47c4-aea8-08805e6d9922;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=bd7f877c-1d38-4f0c-80ca-53356f31ea00'),
+    exporter=AzureExporter(connection_string='InstrumentationKey=acf11d7c-16d1-47c4'),
     sampler=ProbabilitySampler(rate=1.0)
 )
 
