@@ -61,6 +61,11 @@ spec:
         image: myacr2025714.azurecr.io/azure-vote-front:v1
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            cpu: 125m
+          limits:
+            cpu: 250m
         env:
         - name: REDIS
           value: "azure-vote-back"
